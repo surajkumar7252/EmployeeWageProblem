@@ -74,9 +74,7 @@ public class EmployeeWage implements IComputeEmpWage{
 	    	
 	     }
 	     
-	     public int computeEmpWage(companyEmpWagr companyEmpWage) {
-	    	 ...
-	     }
+	     
 	     
 	     
 	            
