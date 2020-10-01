@@ -5,18 +5,19 @@
 
 //https://github.com/surajkumar7252/EmployeeWageProblem.git
 
+import java.util.Map;
 
-
-public interface IComputeEmpWage {
-
+public interface IComputeEmpWage{
 	public void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth);
     public void ComputeEmpWage();
-	}
-
+	public int getTotalWage(String company);
+}
 
 public class companyEmpWage {
 	    
-	    
+	    public static final int IS_PART_TIME =1;                  
+		public static final int IS_FULL_TIME =2; 
+		
 		private final String company;
 		private final int empRatePerHour;
 		private final int numOfWorkingDays;
@@ -45,22 +46,26 @@ public class EmployeeWage implements IComputeEmpWage{
 	    
 	     public static final int IS_PART_TIME =1;                  
 	     public static final int IS_FULL_TIME =2; 
-	     private int numberOfCompany=0;
-	     private companyEmpWage[] companyEmp;
+	     private int numOfCompany=0;
+	     private LinkedList <String,CompanyEmpWage>companyEmpWageList;
+	     private Map<String,CompanyEmpWage> companyToEmpWageMap;
+	     
 	     public EmployeeWage() {
-	    	companyEmp = new companyEmpWage[20];
+	    	 companyEmpWageList =new LinkedList<>();
+	    	 companyToEmpWageMap=new HashMap<>();
 	     }
 	     
 	     public void addCompanyEmpWage(String company, int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
-	    
-	    	 companyEmp[numberOfCompany] = new companyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
-	    	 numberOfCompany=numberOfCompany+1;
+	    	companyEmpWageList.add(companyEmpWage);
+	    	companyToEmpWageMap.put(cpmpany, companyEmpWage);
 	     }
 	     
-	     public void computeEmpWage(){
-	    	 for(int i=0;i<numberOfCompany;i++){
-	    		 companyEmp[i].setTotalEmpWage(this.IComputeEmpWage(companyEmp[i])); 
-	    		 System.out.println(companyEmp[i]);
+	     public void computeEmpWage()
+	     {
+	    	 for(int i=0;i<companyEmpWageList.size();i++()){
+	    		 companyEmpWage companyEmpWage = companyEmpWageList.get(i);
+	    		 companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+	    		 System.out.println(companyEmpWage);
 	    	 }
 	     }
 	     
@@ -69,51 +74,21 @@ public class EmployeeWage implements IComputeEmpWage{
 	    	
 	     }
 	     
-	     public int computeEmpWage(companyEmpWage companyEmpWage) {
-	    	int totalEmployeeHrs=0;
-	    	int totalEmployeeDays=0;
-	    	 while(totalEmployeeHrs<=companyEmp.numOfWorkingHrs && totalEmployeeDays<companyEmpWage.numOfWorkingDays)   // While Loop begins here.
-     		{
-             	totalEmployeeDays++;
- 		     int empCheck=(int)Math.floor(Math.random()*10)%3;
- 		  
- 		    switch(empCheck)
- 		   {
- 		  case  IS_PART_TIME:
- 		      empHrs=4;
- 		      break;
- 		  case IS_FULL_TIME:
- 		      empHrs=8;
- 		      break;
- 		  default:
- 		 	empHrs=0;
- 		
- 		  }
- 			   
- 		    totalEmployeeHrs+=empHrs;                                                           //total Employee Hours is obtained.
- 			System.out.println("DAY#:"+totalWorkingDays+" Emp Hr: "+empHrs);              
- 			}
-             int totalEmpWage=totalEmpHrs+EMP_RATE_PER_HOUR;                                //total wage is being computed.
-     		System.out.println("Total Emp Wage: "+ totalEmpWage); 
-          
-          }
-}
-	    	
-	    	
+	     public int computeEmpWage(companyEmpWagr companyEmpWage) {
+	    	 ...
 	     }
 	     
 	     
-	     }	            
+	            
 	     
 public static void main(String[] args) {
 	
 	      IComputeEmpWage empWageBuilder= new EmployeeWage();
-	    
-	     EmployeeWage.addCompanyEmpWage("DMart",20,2,10);
-	     EmployeeWage.addCompanyEmpWage("Reliance",10,4,20);
-	     EmployeeWage.computeEmpWage();
-	     
+	      empWageBuilder.addCompanyEmpWage(company: "DMart", empRatePerHour 20, numOfWorkingDays 2, maxHoursPerMonth 10);
+	      empWageBuilder.addCompanyEmpWage(company: "Reliance", empRatePerHour 10, numOfWorkingDays 4, maxHoursPerMonth 20);
+	      empWageBuilder.ComputeEmpWage();
+	      System.out.println("Total Wage for Dmart Company: "+ empWageBuilder.getTitalWage(company: "DMart"));
+
 	       }
 	              
 }
-
